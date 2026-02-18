@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="pt-br" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velaris.code | Digital Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #020617;
+            /* Aumentada a opacidade da grade de 0.08 para 0.15 */
+            --grid-color: rgba(56, 189, 248, 0.15);
+            --glow-color: rgba(56, 189, 248, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #f8fafc;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Container dos efeitos de fundo */
+        #bg-effects-container {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background-color: var(--bg-dark);
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        canvas {
+            position: absolute;
+            inset: 0;
+            display: block;
+        }
+
+        #digital-rain-canvas {
+            /* Aumentada a opacidade da chuva digital de 0.35 para 0.65 */
+            opacity: 0.65;
+        }
+
+        #coding-trails-canvas {
+            /* Aumentada a opacidade das trilhas de 0.15 para 0.4 */
+            opacity: 0.4;
+        }
+
+        /* Grade Blueprint sobreposta */
+        .tech-bg-container {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background-image: 
+                radial-gradient(circle at 1.5px 1.5px, var(--grid-color) 1.5px, transparent 0);
+            background-size: 40px 40px;
+        }
+
+        .tech-glow-1 {
+            position: absolute;
+            top: -15%;
+            left: -10%;
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle, var(--glow-color) 0%, transparent 75%);
+            filter: blur(100px);
+            animation: drift 25s infinite alternate ease-in-out;
+            opacity: 0.7;
+        }
+
+        @keyframes drift {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(10%, 5%) scale(1.1); }
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #38bdf8, #7dd3fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+
+        section {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="bg-effects-container">
+        <canvas id="digital-rain-canvas"></canvas>
+        <canvas id="coding-trails-canvas"></canvas>
+    </div>
+    
+    <div class="tech-bg-container">
+        <div class="tech-glow-1"></div>
+    </div>
+
+    <div id="root"></div>
+
+    <script>
+        // --- EFEITO DIGITAL RAIN (VERTICAL) ---
+        const rainCanvas = document.getElementById('digital-rain-canvas');
+        const rainCtx = rainCanvas.getContext('2d');
+        let rWidth = rainCanvas.width = window.innerWidth;
+        let rHeight = rainCanvas.height = window.innerHeight;
+        const characters = "01<>{}[]/\\|;:=+*-!@#$%^&*()_ABCDEF";
+        const rainFontSize = 16;
+        let rainColumns = Math.floor(rWidth / rainFontSize);
+        let rainDrops = Array(rainColumns).fill(0).map(() => Math.random() * -100);
+
+        function drawRain() {
+            rainCtx.fillStyle = "rgba(2, 6, 23, 0.1)";
+            rainCtx.fillRect(0, 0, rWidth, rHeight);
+            rainCtx.font = rainFontSize + "px 'JetBrains Mono'";
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                const isBright = Math.random() > 0.95;
+                rainCtx.fillStyle = isBright ? "#f0f9ff" : "#0ea5e9";
+                rainCtx.fillText(text, i * rainFontSize, rainDrops[i] * rainFontSize);
+                if (rainDrops[i] * rainFontSize > rHeight && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        }
+
+        // --- EFEITO TRILHAS DE CÓDIGO (HORIZONTAL) ---
+        const trailsCanvas = document.getElementById('coding-trails-canvas');
+        const trailsCtx = trailsCanvas.getContext('2d');
+        let tWidth = trailsCanvas.width = window.innerWidth;
+        let tHeight = trailsCanvas.height = window.innerHeight;
+
+        const codeSnippets = [
+            "import { Velaris } from '@core'",
+            "fn.deploy(project)",
+            "git push --force origin main",
+            "const status = 'STABLE'",
+            "<div>Velaris.code</div>",
+            "if(security >= 10) return true",
+            "01101001 01110100",
+            "sudo apt-get upgrade",
+            "npm run build:prod",
+            "while(active) { code(); }",
+            "export default class System",
+            "SELECT * FROM future WHERE success = true",
+            "fetch('/api/v2/deployment')"
+        ];
+
+        class Trail {
+            constructor() {
+                this.init();
+            }
+            init() {
+                this.x = Math.random() < 0.5 ? -300 : tWidth + 300;
+                this.y = Math.random() * tHeight;
+                this.speed = (Math.random() * 2 + 1) * (this.x < 0 ? 1 : -1);
+                this.text = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+                this.opacity = Math.random() * 0.5 + 0.2;
+                this.fontSize = Math.floor(Math.random() * 4 + 12);
+            }
+            update() {
+                this.x += this.speed;
+                if (this.speed > 0 && this.x > tWidth + 300) this.init();
+                if (this.speed < 0 && this.x < -300) this.init();
+            }
+            draw() {
+                trailsCtx.font = this.fontSize + "px 'JetBrains Mono'";
+                trailsCtx.fillStyle = `rgba(14, 165, 233, ${this.opacity})`;
+                trailsCtx.fillText(this.text, this.x, this.y);
+                // Desenha uma linha de rastro sutil atrás do texto
+                trailsCtx.strokeStyle = `rgba(14, 165, 233, ${this.opacity * 0.2})`;
+                trailsCtx.beginPath();
+                trailsCtx.moveTo(this.x, this.y - this.fontSize/2);
+                trailsCtx.lineTo(this.x - (this.speed * 40), this.y - this.fontSize/2);
+                trailsCtx.stroke();
+            }
+        }
+
+        const trails = Array(15).fill(0).map(() => new Trail());
+
+        function drawTrails() {
+            trailsCtx.clearRect(0, 0, tWidth, tHeight);
+            trails.forEach(t => {
+                t.update();
+                t.draw();
+            });
+        }
+
+        // Redimensionamento
+        window.addEventListener('resize', () => {
+            rWidth = rainCanvas.width = tWidth = trailsCanvas.width = window.innerWidth;
+            rHeight = rainCanvas.height = tHeight = trailsCanvas.height = window.innerHeight;
+            rainColumns = Math.floor(rWidth / rainFontSize);
+            rainDrops = Array(rainColumns).fill(0).map(() => Math.random() * -100);
+        });
+
+        // Loop Unificado para Performance
+        function animate() {
+            drawRain();
+            drawTrails();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

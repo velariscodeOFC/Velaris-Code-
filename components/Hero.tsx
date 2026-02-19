@@ -34,10 +34,10 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           <div className="inline-block px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-sm border border-slate-800 text-sky-400 text-[10px] md:text-xs font-bold mb-6 mono uppercase tracking-widest">
             &lt; Ready to Code /&gt;
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-7xl font-extrabold leading-tight mb-6 text-white break-words">
+          <h1 className="text-3xl sm:text-4xl md:text-7xl font-extrabold leading-tight mb-6 text-white break-words max-w-xs sm:max-w-md mx-auto md:mx-0">
             Construindo o <span className="gradient-text">Futuro Digital</span> do seu Negócio.
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-slate-400 mb-10 max-w-lg mx-auto md:mx-0">
+          <p className="text-base sm:text-lg md:text-xl text-slate-400 mb-10 max-w-xs sm:max-w-md mx-auto md:mx-0">
             Da concepção à implantação. Transformamos ideias complexas em experiências web fluidas, seguras e de alta performance no código mais puro.
           </p>
           <button

@@ -30,7 +30,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
       <div className="absolute bottom-1/4 -left-20 w-80 h-80 bg-indigo-900/10 rounded-full blur-[100px] -z-10"></div>
 
       <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
-        <div className="flex flex-col items-center text-center md:block md:text-left">
+        <div className="flex flex-col items-center text-center">
           <div className="inline-block px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-sm border border-slate-800 text-sky-400 text-[10px] md:text-xs font-bold mb-6 mono uppercase tracking-widest">
             &lt; Ready to Code /&gt;
           </div>
@@ -51,7 +51,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           </button>
         </div>
 
-        <div className="relative w-full max-w-lg mx-auto md:max-w-none md:mx-0">
+        <div className="relative w-full max-w-lg mx-auto">
           <div className="bg-[#020617]/90 backdrop-blur-md border border-slate-800 rounded-xl overflow-hidden shadow-2xl shadow-sky-900/20">
             <div className="bg-slate-900/50 px-4 py-2 flex gap-2 border-b border-slate-800">
               <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-500/50"></div>
@@ -60,16 +60,16 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               <div className="ml-4 text-[10px] md:text-xs text-slate-500 mono">VelarisEngine.ts</div>
             </div>
             <div className="p-4 md:p-8 mono text-xs md:text-base min-h-[250px] md:min-h-[300px] overflow-x-auto">
-              <div className="flex gap-4 mb-2">
+              <div className="flex gap-4 mb-2 whitespace-nowrap">
                 <span className="text-slate-700 select-none">1</span>
                 <span className="text-sky-400">import</span> <span className="text-white">{`{ Development }`}</span> <span className="text-sky-400">from</span> <span className="text-sky-500">'@velaris/core'</span>;
               </div>
-              <div className="flex gap-4 mb-2">
+              <div className="flex gap-4 mb-2 whitespace-nowrap">
                 <span className="text-slate-700 select-none">2</span>
                 <span>&nbsp;</span>
               </div>
               {codeSnippets.map((line, idx) => (
-                <div key={idx} className={`flex gap-4 mb-2 transition-all duration-500 ${idx > codeLine ? 'opacity-0 translate-x-4' : 'opacity-100 translate-x-0'}`}>
+                <div key={idx} className={`flex gap-4 mb-2 whitespace-nowrap transition-all duration-500 ${idx > codeLine ? 'opacity-0 translate-x-4' : 'opacity-100 translate-x-0'}`}>
                   <span className="text-slate-700 select-none">{idx + 3}</span>
                   <span className={line.startsWith('//') ? 'text-slate-500 italic' : 'text-sky-300'}>
                     {line}

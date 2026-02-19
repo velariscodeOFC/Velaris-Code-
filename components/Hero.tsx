@@ -51,7 +51,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           </button>
         </div>
 
-        <div className="relative">
+        <div className="relative w-full max-w-lg mx-auto md:max-w-none md:mx-0">
           <div className="bg-[#020617]/90 backdrop-blur-md border border-slate-800 rounded-xl overflow-hidden shadow-2xl shadow-sky-900/20">
             <div className="bg-slate-900/50 px-4 py-2 flex gap-2 border-b border-slate-800">
               <div className="w-3 h-3 rounded-full bg-red-500/50"></div>

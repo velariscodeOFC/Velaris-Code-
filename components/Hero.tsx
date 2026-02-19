@@ -31,13 +31,13 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
       <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
         <div className="flex flex-col items-center text-center md:block md:text-left">
-          <div className="inline-block px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-sm border border-slate-800 text-sky-400 text-xs font-bold mb-6 mono uppercase tracking-widest">
+          <div className="inline-block px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-sm border border-slate-800 text-sky-400 text-[10px] md:text-xs font-bold mb-6 mono uppercase tracking-widest">
             &lt; Ready to Code /&gt;
           </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-7xl font-extrabold leading-tight mb-6 text-white break-words">
             Construindo o <span className="gradient-text">Futuro Digital</span> do seu Negócio.
           </h1>
-          <p className="text-xl text-slate-400 mb-10 max-w-lg">
+          <p className="text-base sm:text-lg md:text-xl text-slate-400 mb-10 max-w-lg mx-auto md:mx-0">
             Da concepção à implantação. Transformamos ideias complexas em experiências web fluidas, seguras e de alta performance no código mais puro.
           </p>
           <button
@@ -54,12 +54,12 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         <div className="relative w-full max-w-lg mx-auto md:max-w-none md:mx-0">
           <div className="bg-[#020617]/90 backdrop-blur-md border border-slate-800 rounded-xl overflow-hidden shadow-2xl shadow-sky-900/20">
             <div className="bg-slate-900/50 px-4 py-2 flex gap-2 border-b border-slate-800">
-              <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-              <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
-              <div className="ml-4 text-xs text-slate-500 mono">VelarisEngine.ts</div>
+              <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-500/50"></div>
+              <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-500/50"></div>
+              <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-500/50"></div>
+              <div className="ml-4 text-[10px] md:text-xs text-slate-500 mono">VelarisEngine.ts</div>
             </div>
-            <div className="p-8 mono text-sm md:text-base min-h-[300px]">
+            <div className="p-4 md:p-8 mono text-xs md:text-base min-h-[250px] md:min-h-[300px] overflow-x-auto">
               <div className="flex gap-4 mb-2">
                 <span className="text-slate-700 select-none">1</span>
                 <span className="text-sky-400">import</span> <span className="text-white">{`{ Development }`}</span> <span className="text-sky-400">from</span> <span className="text-sky-500">'@velaris/core'</span>;

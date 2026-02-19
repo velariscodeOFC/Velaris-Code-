@@ -28,7 +28,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     <footer className="bg-slate-950 border-t border-slate-800 py-12">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
-          <div className="md:col-span-2">
+          <div className="md:col-span-2 flex flex-col items-center md:items-start text-center md:text-left">
             <button onClick={scrollToTop} className="flex items-center gap-2 mb-6 group focus:outline-none">
               <img src="/logo.svg" alt="Velaris Code Logo" className="w-8 h-8 rounded object-cover group-hover:rotate-6 transition-transform" />
               <span className="text-2xl font-extrabold text-white mono">VELARIS.CODE</span>
@@ -46,21 +46,21 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="text-white font-bold mb-6 mono uppercase tracking-widest text-sm">Navegação</h4>
-            <ul className="space-y-4 text-slate-500 text-sm">
+            <ul className="space-y-4 text-slate-500 text-sm flex flex-col items-center md:items-start">
               <li><button onClick={scrollToTop} className="hover:text-white transition-colors focus:outline-none">Home</button></li>
-              <li><button onClick={() => scrollToSection('services')} className="hover:text-white transition-colors focus:outline-none text-left">Serviços</button></li>
-              <li><button onClick={() => scrollToSection('about')} className="hover:text-white transition-colors focus:outline-none text-left">Sobre Nós</button></li>
-              <li><button onClick={() => scrollToSection('contact')} className="hover:text-white transition-colors focus:outline-none text-left">Contato</button></li>
+              <li><button onClick={() => scrollToSection('services')} className="hover:text-white transition-colors focus:outline-none">Serviços</button></li>
+              <li><button onClick={() => scrollToSection('about')} className="hover:text-white transition-colors focus:outline-none">Sobre Nós</button></li>
+              <li><button onClick={() => scrollToSection('contact')} className="hover:text-white transition-colors focus:outline-none">Contato</button></li>
             </ul>
           </div>
 
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="text-white font-bold mb-6 mono uppercase tracking-widest text-sm">Suporte</h4>
-            <ul className="space-y-4 text-slate-500 text-sm">
-              <li><button onClick={() => onNavigate('privacy')} className="hover:text-white transition-colors focus:outline-none text-left">Privacidade</button></li>
-              <li><button onClick={() => onNavigate('terms')} className="hover:text-white transition-colors focus:outline-none text-left">Termos de Uso</button></li>
+            <ul className="space-y-4 text-slate-500 text-sm flex flex-col items-center md:items-start">
+              <li><button onClick={() => onNavigate('privacy')} className="hover:text-white transition-colors focus:outline-none">Privacidade</button></li>
+              <li><button onClick={() => onNavigate('terms')} className="hover:text-white transition-colors focus:outline-none">Termos de Uso</button></li>
             </ul>
           </div>
         </div>

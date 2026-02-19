@@ -30,7 +30,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
       <div className="absolute bottom-1/4 -left-20 w-80 h-80 bg-indigo-900/10 rounded-full blur-[100px] -z-10"></div>
 
       <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
-        <div>
+        <div className="flex flex-col items-center text-center md:block md:text-left">
           <div className="inline-block px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-sm border border-slate-800 text-sky-400 text-xs font-bold mb-6 mono uppercase tracking-widest">
             &lt; Ready to Code /&gt;
           </div>
@@ -40,7 +40,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           <p className="text-xl text-slate-400 mb-10 max-w-lg">
             Da concepção à implantação. Transformamos ideias complexas em experiências web fluidas, seguras e de alta performance no código mais puro.
           </p>
-          <button 
+          <button
             onClick={() => {
               const element = document.getElementById('services');
               if (element) element.scrollIntoView({ behavior: 'smooth' });
@@ -79,7 +79,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               ))}
             </div>
           </div>
-          
+
           {/* Floating tags */}
           <div className="absolute -top-6 -right-6 p-4 bg-slate-900/90 backdrop-blur-sm border border-slate-800 rounded-lg shadow-xl hidden lg:block">
             <div className="flex items-center gap-3">

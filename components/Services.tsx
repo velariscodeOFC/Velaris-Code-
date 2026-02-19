@@ -118,12 +118,12 @@ const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         {services.map((service, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             onClick={() => setSelectedService(service)}
-            className="p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition-all group cursor-pointer hover:-translate-y-2"
+            className="p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition-all group cursor-pointer hover:-translate-y-2 text-center md:text-left"
           >
-            <div className="mb-6 text-sky-400 transition-transform group-hover:scale-110">
+            <div className="mb-6 text-sky-400 transition-transform group-hover:scale-110 flex justify-center md:justify-start">
               {service.icon}
             </div>
             <h4 className="text-xl font-bold text-white mb-2">{service.title}</h4>
@@ -133,7 +133,7 @@ const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
             <p className="text-slate-400 mb-6 text-sm leading-relaxed line-clamp-2">
               {service.description}
             </p>
-            <button className="text-sky-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2 group-hover:gap-3 transition-all">
+            <button className="text-sky-400 text-xs font-bold uppercase tracking-widest flex items-center justify-center md:justify-start gap-2 group-hover:gap-3 transition-all w-full md:w-auto">
               Ver Detalhes <span className="text-lg">→</span>
             </button>
           </div>
@@ -144,13 +144,13 @@ const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
       {selectedService && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-5xl max-h-[90vh] overflow-y-auto shadow-2xl relative">
-            
+
             <div className="sticky top-0 bg-slate-900/80 backdrop-blur-md p-6 border-b border-slate-800 flex justify-between items-center z-10">
               <div className="flex items-center gap-4">
                 <div className="text-sky-400">{selectedService.icon}</div>
                 <h3 className="text-2xl font-black text-white">{selectedService.title}</h3>
               </div>
-              <button 
+              <button
                 onClick={closeModal}
                 className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-white transition-colors"
               >
@@ -190,9 +190,9 @@ const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
                   <div className="grid sm:grid-cols-2 gap-6">
                     {selectedService.models.map((model, i) => (
                       <div key={i} className="group/card relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-950">
-                        <img 
-                          src={model.image} 
-                          alt={model.name} 
+                        <img
+                          src={model.image}
+                          alt={model.name}
                           className="w-full aspect-[4/3] object-cover opacity-60 group-hover/card:opacity-90 transition-opacity grayscale group-hover/card:grayscale-0 duration-500"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
@@ -213,7 +213,7 @@ const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
               </div>
 
               <div className="mt-12 flex justify-center">
-                <button 
+                <button
                   onClick={handleChooseService}
                   className="px-12 py-4 bg-sky-600 hover:bg-sky-500 text-white font-black rounded-xl transition-all shadow-lg hover:shadow-sky-500/25 uppercase tracking-widest text-center"
                 >

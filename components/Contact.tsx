@@ -25,7 +25,7 @@ const Contact: React.FC<ContactProps> = ({ preSelectedService }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const text = `Olá Velaris! 🚀
 Me chamo *${formData.name}* (${formData.email}).
 Gostaria de solicitar um orçamento para: *${formData.service}*.
@@ -35,20 +35,20 @@ ${formData.message}`;
 
     const encodedText = encodeURIComponent(text);
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedText}`;
-    
+
     window.open(whatsappUrl, '_blank');
   };
 
   return (
     <div className="container mx-auto px-6">
       <div className="max-w-6xl mx-auto space-y-16">
-        
+
         {/* Highlighted Contact Channels */}
         <div className="grid md:grid-cols-3 gap-6">
           {/* Instagram Card */}
-          <a 
-            href={INSTAGRAM_URL} 
-            target="_blank" 
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
             rel="noopener noreferrer"
             className="group p-8 rounded-3xl bg-gradient-to-br from-purple-600/10 to-pink-600/10 border border-slate-800 hover:border-pink-500/50 transition-all hover:-translate-y-2 flex flex-col items-center text-center shadow-xl hover:shadow-pink-500/10"
           >
@@ -61,9 +61,9 @@ ${formData.message}`;
           </a>
 
           {/* WhatsApp Card */}
-          <a 
-            href={`https://wa.me/${WHATSAPP_NUMBER}`} 
-            target="_blank" 
+          <a
+            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            target="_blank"
             rel="noopener noreferrer"
             className="group p-8 rounded-3xl bg-gradient-to-br from-green-600/10 to-emerald-600/10 border border-slate-800 hover:border-green-500/50 transition-all hover:-translate-y-2 flex flex-col items-center text-center shadow-xl hover:shadow-green-500/10"
           >
@@ -76,7 +76,7 @@ ${formData.message}`;
           </a>
 
           {/* Email Card */}
-          <a 
+          <a
             href={`mailto:${EMAIL_ADDRESS}`}
             className="group p-8 rounded-3xl bg-gradient-to-br from-sky-600/10 to-blue-600/10 border border-slate-800 hover:border-sky-500/50 transition-all hover:-translate-y-2 flex flex-col items-center text-center shadow-xl hover:shadow-sky-500/10"
           >
@@ -91,8 +91,8 @@ ${formData.message}`;
 
         {/* Form and Detailed Info Section */}
         <div className="grid lg:grid-cols-5 gap-12 items-start">
-          
-          <div className="lg:col-span-2 space-y-8">
+
+          <div className="lg:col-span-2 space-y-8 text-center lg:text-left">
             <div>
               <h2 className="text-4xl font-black text-white mb-6">Pronto para <span className="gradient-text">Codar?</span></h2>
               <p className="text-slate-400 text-lg leading-relaxed">
@@ -100,8 +100,8 @@ ${formData.message}`;
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800">
-              <h5 className="text-white font-bold mb-4 mono text-sm flex items-center gap-2">
+            <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 inline-block lg:block text-left">
+              <h5 className="text-white font-bold mb-4 mono text-sm flex items-center gap-2 justify-center lg:justify-start">
                 <span className="w-2 h-2 bg-sky-500 rounded-full animate-pulse"></span>
                 STATUS: DISPONÍVEL_PARA_PROJETOS
               </h5>
@@ -114,7 +114,7 @@ ${formData.message}`;
           {/* Form */}
           <div className="lg:col-span-3 bg-slate-950 border border-slate-800 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-sky-500/5 blur-3xl rounded-full"></div>
-            
+
             <div className="text-center mb-10">
               <h2 className="text-2xl font-bold text-white mb-2">Solicitar Orçamento &lt;FORJA/&gt;</h2>
               <p className="text-slate-500 text-sm">Os dados serão formatados e enviados via WhatsApp.</p>
@@ -123,34 +123,34 @@ ${formData.message}`;
             <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-xs uppercase tracking-widest text-slate-500 mono font-bold">Nome Completo</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   required
                   className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sky-500 transition-colors"
                   placeholder="Ex: Alan Turing"
                   value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
               </div>
 
               <div className="space-y-2">
                 <label className="text-xs uppercase tracking-widest text-slate-500 mono font-bold">Email</label>
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   required
                   className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sky-500 transition-colors"
                   placeholder="seu@email.com"
                   value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
               </div>
 
               <div className="space-y-2 md:col-span-2">
                 <label className="text-xs uppercase tracking-widest text-slate-500 mono font-bold">Tipo de Projeto</label>
-                <select 
+                <select
                   className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sky-500 transition-colors appearance-none"
                   value={formData.service}
-                  onChange={(e) => setFormData({...formData, service: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                 >
                   <option value="Simples (Landing Page)">Simples (Landing Page)</option>
                   <option value="E-commerce">E-commerce</option>
@@ -161,17 +161,17 @@ ${formData.message}`;
 
               <div className="space-y-2 md:col-span-2">
                 <label className="text-xs uppercase tracking-widest text-slate-500 mono font-bold">Mensagem / Requisitos</label>
-                <textarea 
+                <textarea
                   rows={4}
                   className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sky-500 transition-colors resize-none"
                   placeholder="Descreva brevemente sua necessidade..."
                   value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 ></textarea>
               </div>
 
               <div className="md:col-span-2 pt-4">
-                <button 
+                <button
                   type="submit"
                   className="w-full py-4 bg-sky-600 hover:bg-sky-500 text-white font-black rounded-xl transition-all shadow-lg hover:shadow-sky-500/25 uppercase tracking-widest flex items-center justify-center gap-3"
                 >

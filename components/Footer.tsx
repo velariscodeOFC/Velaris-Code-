@@ -30,7 +30,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-2">
             <button onClick={scrollToTop} className="flex items-center gap-2 mb-6 group focus:outline-none">
-              <div className="w-8 h-8 bg-sky-500 rounded flex items-center justify-center font-bold text-slate-950 mono group-hover:rotate-6 transition-transform">V</div>
+              <img src="/logo.png" alt="Velaris Code Logo" className="w-8 h-8 rounded object-cover group-hover:rotate-6 transition-transform" />
               <span className="text-2xl font-extrabold text-white mono">VELARIS.CODE</span>
             </button>
             <p className="text-slate-500 max-w-sm mb-6 leading-relaxed text-sm">

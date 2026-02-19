@@ -46,9 +46,7 @@ const Header: React.FC<HeaderProps> = ({ isScrolled, onNavigate, currentView }) 
           className="flex items-center gap-2 group cursor-pointer focus:outline-none"
           aria-label="Voltar ao início"
         >
-          <div className="w-8 h-8 bg-sky-500 rounded flex items-center justify-center font-bold text-slate-950 mono group-hover:rotate-12 transition-transform">
-            V
-          </div>
+          <img src="/logo.png" alt="Velaris Code Logo" className="w-8 h-8 rounded object-cover group-hover:rotate-12 transition-transform" />
           <span className="text-2xl font-extrabold tracking-tight text-white mono">
             VELARIS.CODE
           </span>

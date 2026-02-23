@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="pt-br" style="scroll-behavior: smooth;">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -30,9 +32,20 @@
         #bg-effects-container {
             position: fixed;
             inset: 0;
-            z-index: -2;
+            z-index: -3;
             background-color: var(--bg-dark);
             overflow: hidden;
+            pointer-events: none;
+        }
+
+        /* Película escura sobre os efeitos de fundo */
+        #bg-film-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background: rgba(2, 6, 23, 0.55);
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px);
             pointer-events: none;
         }
 
@@ -58,7 +71,7 @@
             inset: 0;
             z-index: -1;
             pointer-events: none;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 1.5px 1.5px, var(--grid-color) 1.5px, transparent 0);
             background-size: 40px 40px;
         }
@@ -76,8 +89,13 @@
         }
 
         @keyframes drift {
-            from { transform: translate(0, 0) scale(1); }
-            to { transform: translate(10%, 5%) scale(1.1); }
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(10%, 5%) scale(1.1);
+            }
         }
 
         .mono {
@@ -91,8 +109,15 @@
         }
 
         @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
         }
 
         .cursor-blink {
@@ -104,7 +129,7 @@
             z-index: 1;
         }
     </style>
-<script type="importmap">
+    <script type="importmap">
 {
   "imports": {
     "react/": "https://esm.sh/react@^19.2.4/",
@@ -114,14 +139,18 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/index.css">
 </head>
+
 <body>
     <div id="bg-effects-container">
         <canvas id="digital-rain-canvas"></canvas>
         <canvas id="coding-trails-canvas"></canvas>
     </div>
-    
+
+    <!-- Película escura para reduzir poluição visual dos caracteres -->
+    <div id="bg-film-overlay"></div>
+
     <div class="tech-bg-container">
         <div class="tech-glow-1"></div>
     </div>
@@ -201,8 +230,8 @@
                 // Desenha uma linha de rastro sutil atrás do texto
                 trailsCtx.strokeStyle = `rgba(14, 165, 233, ${this.opacity * 0.2})`;
                 trailsCtx.beginPath();
-                trailsCtx.moveTo(this.x, this.y - this.fontSize/2);
-                trailsCtx.lineTo(this.x - (this.speed * 40), this.y - this.fontSize/2);
+                trailsCtx.moveTo(this.x, this.y - this.fontSize / 2);
+                trailsCtx.lineTo(this.x - (this.speed * 40), this.y - this.fontSize / 2);
                 trailsCtx.stroke();
             }
         }
@@ -234,6 +263,7 @@
 
         animate();
     </script>
-<script type="module" src="/index.tsx"></script>
+    <script type="module" src="/index.tsx"></script>
 </body>
+
 </html>

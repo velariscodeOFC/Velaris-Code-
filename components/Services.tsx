@@ -17,6 +17,7 @@ interface ServiceItem {
   features: string[];
   priceRange: string;
   models: ServiceModel[];
+  comingSoon?: boolean;
 }
 
 interface ServicesProps {
@@ -73,7 +74,8 @@ const services: ServiceItem[] = [
       { name: "Corporate Global", image: "https://picsum.photos/seed/corp1/400/300", tag: "Enterprise" },
       { name: "Creative Agency", image: "https://picsum.photos/seed/corp2/400/300", tag: "Modern" },
       { name: "Consultancy Pro", image: "https://picsum.photos/seed/corp3/400/300", tag: "Trust" }
-    ]
+    ],
+    comingSoon: true
   },
   {
     id: "apps",
@@ -90,7 +92,8 @@ const services: ServiceItem[] = [
       { name: "Admin Dashboard", image: "https://picsum.photos/seed/app1/400/300", tag: "Management" },
       { name: "Social SaaS", image: "https://picsum.photos/seed/app2/400/300", tag: "Social" },
       { name: "Finance Hub", image: "https://picsum.photos/seed/app3/400/300", tag: "Fintech" }
-    ]
+    ],
+    comingSoon: true
   }
 ];
 
@@ -120,22 +123,38 @@ const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
         {services.map((service, index) => (
           <div
             key={index}
-            onClick={() => setSelectedService(service)}
-            className="p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition-all group cursor-pointer hover:-translate-y-2 text-center md:text-left"
+            onClick={() => !service.comingSoon && setSelectedService(service)}
+            className={`p-8 rounded-2xl bg-slate-900 border transition-all text-center md:text-left relative overflow-hidden ${service.comingSoon
+                ? 'border-slate-800/50 opacity-60 cursor-default grayscale'
+                : 'border-slate-800 hover:border-sky-500/50 group cursor-pointer hover:-translate-y-2'
+              }`}
           >
+            {service.comingSoon && (
+              <div className="absolute top-4 right-4 z-10">
+                <span className="px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-[10px] font-bold uppercase tracking-widest mono animate-pulse">
+                  Em Breve
+                </span>
+              </div>
+            )}
             <div className="mb-6 text-sky-400 transition-transform group-hover:scale-110 flex justify-center md:justify-start">
               {service.icon}
             </div>
             <h4 className="text-xl font-bold text-white mb-2">{service.title}</h4>
             <div className="text-sky-500 text-xs mono font-bold mb-4 uppercase tracking-tighter">
-              A partir de {service.priceRange.split('-')[0]}
+              {service.comingSoon ? 'Em breve' : `A partir de ${service.priceRange.split('-')[0]}`}
             </div>
             <p className="text-slate-400 mb-6 text-sm leading-relaxed line-clamp-2">
               {service.description}
             </p>
-            <button className="text-sky-400 text-xs font-bold uppercase tracking-widest flex items-center justify-center md:justify-start gap-2 group-hover:gap-3 transition-all w-full md:w-auto">
-              Ver Detalhes <span className="text-lg">→</span>
-            </button>
+            {service.comingSoon ? (
+              <span className="text-slate-500 text-xs font-bold uppercase tracking-widest flex items-center justify-center md:justify-start gap-2 w-full md:w-auto">
+                Disponível em breve
+              </span>
+            ) : (
+              <button className="text-sky-400 text-xs font-bold uppercase tracking-widest flex items-center justify-center md:justify-start gap-2 group-hover:gap-3 transition-all w-full md:w-auto">
+                Ver Detalhes <span className="text-lg">→</span>
+              </button>
+            )}
           </div>
         ))}
       </div>
